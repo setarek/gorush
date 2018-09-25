@@ -52,7 +52,7 @@ func (s *Server) Send(ctx context.Context, in *proto.NotificationRequest) (*prot
 	notification := gorush.PushNotification{
 		Platform:         int(in.Platform),
 		Tokens:           in.Tokens,
-		Message:          in.Message,
+		Body:             in.Body,
 		Title:            in.Title,
 		Topic:            in.Topic,
 		APIKey:           in.Key,

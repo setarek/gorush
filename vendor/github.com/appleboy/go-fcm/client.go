@@ -10,7 +10,7 @@ import (
 
 const (
 	// DefaultEndpoint contains endpoint URL of FCM service.
-	DefaultEndpoint = "https://fcm.googleapis.com/fcm/send"
+	DefaultEndpoint = "https://gcm-http.googleapis.com/gcm/send"
 )
 
 var (

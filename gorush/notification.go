@@ -52,7 +52,7 @@ type PushNotification struct {
 	// Common
 	Tokens           []string    `json:"tokens" binding:"required"`
 	Platform         int         `json:"platform" binding:"required"`
-	Message          string      `json:"message,omitempty"`
+	Body             string       `json:"body,omitempty"`
 	Title            string      `json:"title,omitempty"`
 	Priority         string      `json:"priority,omitempty"`
 	ContentAvailable bool        `json:"content_available,omitempty"`

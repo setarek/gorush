@@ -153,7 +153,7 @@ func (m *Alert) GetTitleLocArgs() []string {
 type NotificationRequest struct {
 	Tokens           []string `protobuf:"bytes,1,rep,name=tokens" json:"tokens,omitempty"`
 	Platform         int32    `protobuf:"varint,2,opt,name=platform" json:"platform,omitempty"`
-	Message          string   `protobuf:"bytes,3,opt,name=message" json:"message,omitempty"`
+	Body             string   `protobuf:"bytes,3,opt,name=body" json:"body,omitempty"`
 	Title            string   `protobuf:"bytes,4,opt,name=title" json:"title,omitempty"`
 	Topic            string   `protobuf:"bytes,5,opt,name=topic" json:"topic,omitempty"`
 	Key              string   `protobuf:"bytes,6,opt,name=key" json:"key,omitempty"`
@@ -187,7 +187,7 @@ func (m *NotificationRequest) GetPlatform() int32 {
 
 func (m *NotificationRequest) GetMessage() string {
 	if m != nil {
-		return m.Message
+		return m.Body
 	}
 	return ""
 }

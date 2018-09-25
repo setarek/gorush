@@ -214,7 +214,7 @@ func getLogPushEntry(status, token string, req PushNotification, errPush error) 
 		Type:     status,
 		Platform: plat,
 		Token:    token,
-		Message:  req.Message,
+		Message:  req.Body,
 		Error:    errMsg,
 	}
 }

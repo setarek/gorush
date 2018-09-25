@@ -18,7 +18,7 @@ message Alert {
 message NotificationRequest {
   repeated string tokens = 1;
   int32 platform = 2;
-  string message = 3;
+  string body = 3;
   string title = 4;
   string topic = 5;
   string key = 6;

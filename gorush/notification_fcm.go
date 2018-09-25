@@ -3,6 +3,7 @@ package gorush
 import (
 	"errors"
 	"fmt"
+	"reflect"
 
 	"github.com/appleboy/go-fcm"
 )
@@ -43,6 +44,11 @@ func GetAndroidNotification(req PushNotification) *fcm.Message {
 		DryRun:                req.DryRun,
 	}
 
+	visible_notificaion := fcm.Notification{
+		Title:  req.Title,
+		Body:   req.Body,
+	}
+
 	if len(req.Tokens) > 0 {
 		notification.RegistrationIDs = req.Tokens
 	}
@@ -50,7 +56,6 @@ func GetAndroidNotification(req PushNotification) *fcm.Message {
 	if len(req.Priority) > 0 && req.Priority == "high" {
 		notification.Priority = "high"
 	}
-
 	// Add another field
 	if len(req.Data) > 0 {
 		notification.Data = make(map[string]interface{})
@@ -58,14 +63,15 @@ func GetAndroidNotification(req PushNotification) *fcm.Message {
 			notification.Data[k] = v
 		}
 	}
-
-	notification.Notification = &req.Notification
+	notification.Notification = &visible_notificaion
 
 	// Set request message if body is empty
-	if len(req.Message) > 0 {
-		notification.Notification.Body = req.Message
+	if len(req.Body) > 0 {
+		notification.Notification.Body = req.Body
 	}
 
+	data := map[string]interface{}{"body":req.Body,"title": req.Title}
+  notification.Data = data
 	if len(req.Title) > 0 {
 		notification.Notification.Title = req.Title
 	}
@@ -73,7 +79,6 @@ func GetAndroidNotification(req PushNotification) *fcm.Message {
 	if v, ok := req.Sound.(string); ok && len(v) > 0 {
 		notification.Notification.Sound = v
 	}
-
 	return notification
 }
 
@@ -118,6 +123,9 @@ Retry:
 		LogError.Error("FCM server error: " + err.Error())
 		return false
 	}
+
+
+
 
 	res, err := client.Send(notification)
 	if err != nil {

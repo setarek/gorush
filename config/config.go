@@ -14,15 +14,15 @@ var defaultConf = []byte(`
 core:
   enabled: true # enabale httpd server
   address: "" # ip address to bind (default: any)
-  port: "8088" # ignore this port number if auto_tls is enabled (listen 443).
+  port: "8086" # ignore this port number if auto_tls is enabled (listen 443).
   worker_num: 0 # default worker number is runtime.NumCPU()
   queue_num: 0 # default queue number is 8192
   max_notification: 100
   sync: false # set true if you need get error message from fail push notification in API response.
   mode: "release"
   ssl: false
-  cert_path: "cert.pem"
-  key_path: "key.pem"
+  cert_path: "./cert.pem"
+  key_path: "./key.pem"
   cert_base64: ""
   key_base64: ""
   http_proxy: "" # only working for FCM server
@@ -36,7 +36,7 @@ core:
     host: "" # which domains the Let's Encrypt will attempt
 
 grpc:
-  enabled: false # enabale gRPC server
+  enabled: true  # enabale gRPC server
   port: 9000
 
 api:
@@ -50,12 +50,13 @@ api:
 
 android:
   enabled: true
-  apikey: "YOUR_API_KEY"
+  apikey: ""
   max_retry: 0 # resend fail notification, default value zero is disabled
+  use_fcm: false
 
 ios:
   enabled: false
-  key_path: ""
+  key_path: "./cert.pem"
   key_base64: "" # load iOS key from base64 input
   key_type: "pem" # could be pem, p12 or p8 type
   password: "" # certificate password, default as empty string.
